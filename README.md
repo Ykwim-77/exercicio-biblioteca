@@ -22,11 +22,6 @@ npm install @prisma/client
 ## 5️⃣ Inicializar Prisma
 npx prisma init
 
-## 6️⃣ (Opcional) Instalar Nodemon para desenvolvimento
-npm install nodemon --save-dev
-
-## 7️⃣ Adicionar script de dev no package.json
-npm set-script dev "nodemon index.js"
 
 
 

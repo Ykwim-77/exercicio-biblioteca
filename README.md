@@ -34,9 +34,6 @@ POST /auth/register
 
 Body: { username, password }
 
-markdown
-Copiar código
-
 **Livros**
 
 GET /books
@@ -53,10 +50,7 @@ POST /books/:id/borrow
 
 POST /books/:id/return
 
-yaml
-Copiar código
 
----
 
 ## Middlewares
 - `auth`: verifica token e usuário  

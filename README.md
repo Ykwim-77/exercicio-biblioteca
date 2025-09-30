@@ -3,33 +3,6 @@
 ## Sobre
 API simples para gerenciar livros de uma biblioteca, com autenticação básica (Basic Token) e permissões de usuário e admin.
 
-
-📁 projeto/
-
-├── 📁 node_modules/
-
-├── 📁 prisma/
-
-│   ├── 📁 migrations/
-│   ├── 📄 banco.db
-│   └── 📄 schema.prisma
-├── 📁 src/
-│   ├── 📁 controller/
-│   │   ├── 📄 book.js
-│   │   └── 📄 user.js
-│   ├── 📁 middlewares/
-│   │   ├── 📄 admin.js
-│   │   └── 📄 auth.js
-│   ├── 📁 routes/
-│   │   ├── 📄 auth.js
-│   │   └── 📄 book.js
-│   └── 📄 server.js
-├── 📄 .env
-├── 📄 .gitignore
-├── 📄 package-lock.json
-├── 📄 package.json
-└── 📄 README.md
-Dicas rápidas
 ## Banco de Dados
 
 **Users**

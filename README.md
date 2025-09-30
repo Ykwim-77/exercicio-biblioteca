@@ -3,6 +3,33 @@
 ## Sobre
 API simples para gerenciar livros de uma biblioteca, com autenticação básica (Basic Token) e permissões de usuário e admin.
 
+#Como iniciar o projeto?
+
+## 1️⃣ Criar pasta e entrar nela
+mkdir meu-projeto
+cd meu-projeto
+
+## 2️⃣ Inicializar o projeto npm
+npm init -y
+
+## 3️⃣ Instalar Express
+npm install express
+
+## 4️⃣ Instalar Prisma e cliente
+npm install prisma --save-dev
+npm install @prisma/client
+
+## 5️⃣ Inicializar Prisma
+npx prisma init
+
+## 6️⃣ (Opcional) Instalar Nodemon para desenvolvimento
+npm install nodemon --save-dev
+
+## 7️⃣ Adicionar script de dev no package.json
+npm set-script dev "nodemon index.js"
+
+
+
 ## Banco de Dados
 
 **Users**

@@ -25,7 +25,7 @@ res.json(livro);
 async function CriarLivro(req,res){
   const {title, author} = req.body;
   if(!title || !author){
-      return res.status(400).json({mensagem: "title e author obrigatórios"});
+      return res.status(400).json({mensagem: "titulo e autor obrigatórios"});
   }
 
   try{
@@ -101,7 +101,7 @@ async function pegar(req, res) {
       where: { id: idnumber }
     });
     if(livro.available == false){
-      return res.status(400).json({ mensagem: "Livro indisponível" });
+      return res.status(400).json({ mensagem: "Livro indisponível meu nego, tente outro!" });
     }
   } catch (error) {
     console.log(error);

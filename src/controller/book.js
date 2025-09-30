@@ -62,7 +62,7 @@ async function atualizarLivro(req,res){
     }catch(error){
       console(error);
     }
-res.status(204).json({mensagem: `Livro com id:${idnumber} foi atualizado`})
+  return res.status(204).json({mensagem: `Livro com id:${idnumber} foi atualizado`})
 }
 
 
@@ -80,7 +80,7 @@ async function deletarLivro(req,res){
   }catch(error){
     console.log(error)
   }
-  res.status(204).json({mensagem: `Livro com id:${idnumber} foi deletado`})
+  return res.status(204).json({mensagem: `Livro com id:${idnumber} foi deletado`})
 
 }
 
@@ -106,7 +106,7 @@ async function pegar(req, res) {
   } catch (error) {
     console.log(error);
   }
-  res.status(204).json({ mensagem: `Livro com id:${idnumber} foi emprestado` });
+  return res.status(204).json({ mensagem: `Livro com id:${idnumber} foi emprestado` });
   
 }
 
@@ -126,7 +126,7 @@ async function devolver(req, res) {
   } catch (error) {
     console.log(error);
   }
-  res.status(204).json({ mensagem: `Livro com id:${idnumber} foi devolvido` });
+   return res.status(204).json({ mensagem: `Livro com id:${idnumber} foi devolvido` });
   
 }
 

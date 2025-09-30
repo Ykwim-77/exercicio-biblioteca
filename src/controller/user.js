@@ -4,8 +4,7 @@ const prisma = new PrismaClient();
 
 async function cadastrar(req, res) {
     const { username, password } = req.body;
-
-    // Verificação de campos obrigatórios
+    
     if (!username || !password) {
         return res.status(400).json({ mensagem: "username e password obrigatórios" });
     }
@@ -14,7 +13,7 @@ async function cadastrar(req, res) {
     }
 
     try {
-        // Tenta criar o usuário
+
         const novoUsuario = await prisma.users.create({
             data: { username, password }
         });

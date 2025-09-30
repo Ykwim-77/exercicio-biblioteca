@@ -3,6 +3,8 @@
 ## Sobre
 API simples para gerenciar livros de uma biblioteca, com autenticação básica (Basic Token) e permissões de usuário e admin.
 
+
+Estrutura do projeto
 node_modules/
 prisma/
   ├── migrations/
@@ -25,7 +27,7 @@ package.json
 package-lock.json
 README.md
 
-
+Dicas rápidas
 ## Banco de Dados
 
 **Users**

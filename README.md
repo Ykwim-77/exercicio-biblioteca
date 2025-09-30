@@ -1,72 +1,77 @@
-Sobre
+# API Sistema de Biblioteca
 
-Essa é uma API simples para gerenciar livros de uma biblioteca. Ela tem autenticação básica (Basic Token) e diferenciação de usuários comuns e administradores.
+## Sobre
+API simples para gerenciar livros de uma biblioteca, com autenticação básica (Basic Token) e permissões de usuário e admin.
 
-Objetivos
+---
 
-Criar rotas REST básicas
+## Banco de Dados
 
-Implementar autenticação e autorização
+**Users**
+- `id`: INTEGER, chave primária  
+- `username`: TEXT, único  
+- `password`: TEXT  
+- `isAdmin`: BOOLEAN, padrão false  
 
-Fazer CRUD de livros usando Prisma e SQLite
+**Books**
+- `id`: INTEGER, chave primária  
+- `title`: TEXT  
+- `author`: TEXT  
+- `available`: BOOLEAN, padrão true  
 
-Diferenciar permissões de usuário comum e admin
+---
 
-Banco de Dados
-Users
+## Autenticação
+- Basic Token (`username:password` em Base64)  
+- Usuário comum: ver livros, pegar/devolver livros  
+- Admin: todas as permissões + criar/editar/deletar livros  
 
-id: INTEGER, chave primária
+---
 
-username: texto, único
+## Rotas
 
-password: texto
-
-isAdmin: booleano, padrão false
-
-Books
-
-id: INTEGER, chave primária
-
-title: texto
-
-author: texto
-
-available: booleano, padrão true
-
-Autenticação
-
-Formato: Basic Token (username:password codificado em Base64)
-
-Usuário comum: ver livros, pegar e devolver livros
-
-Admin: tudo que o usuário pode + criar, editar e deletar livros
-
-Rotas Principais
-Autenticação
+**Autenticação**
 POST /auth/register
 Body: { username, password }
 
-Livros
-GET /books              → listar livros
-GET /books/:id          → detalhes do livro
-POST /books             → criar livro (só admin)
-PATCH /books/:id        → atualizar livro (só admin)
-DELETE /books/:id       → deletar livro (só admin)
-POST /books/:id/borrow  → pegar emprestado
-POST /books/:id/return  → devolver
+markdown
+Copiar código
 
-Middlewares
+**Livros**
+GET /books
+GET /books/:id
+POST /books (admin)
+PATCH /books/:id (admin)
+DELETE /books/:id (admin)
+POST /books/:id/borrow
+POST /books/:id/return
 
-auth: valida Basic Token, garante que o usuário existe
+yaml
+Copiar código
 
-admin: verifica se o usuário é admin
+---
 
-Regras básicas
+## Middlewares
+- `auth`: verifica token e usuário  
+- `admin`: verifica se é admin  
 
-Livro só pode ser pego se estiver disponível
+---
 
-Usuário não-admin não pode criar/editar/deletar livros
+## Regras
+- Livro só pode ser pego se disponível  
+- Usuário não-admin não cria/edita/deleta livros  
+- Username único, senha mínima 4 caracteres  
 
-Username único e senha mínima de 4 caracteres
+---
 
-Primeiro usuário cadastrado vira admin
+## Dados iniciais
+```sql
+INSERT INTO users (username, password, isAdmin) VALUES 
+('admin', '1234', 1),
+('user', '1234', 0);
+
+INSERT INTO books (title, author, available) VALUES 
+('1984', 'George Orwell', 1),
+('Dom Casmurro', 'Machado de Assis', 1),
+('Harry Potter', 'J.K. Rowling', 0),
+('Clean Code', 'Robert Martin', 1);

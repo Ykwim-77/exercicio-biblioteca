@@ -29,19 +29,28 @@ API simples para gerenciar livros de uma biblioteca, com autenticação básica 
 ## Rotas
 
 **Autenticação**
+
 POST /auth/register
+
 Body: { username, password }
 
 markdown
 Copiar código
 
 **Livros**
+
 GET /books
+
 GET /books/:id
+
 POST /books (admin)
+
 PATCH /books/:id (admin)
+
 DELETE /books/:id (admin)
+
 POST /books/:id/borrow
+
 POST /books/:id/return
 
 yaml

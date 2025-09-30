@@ -87,6 +87,31 @@ POST /books/:id/return
 
 ---
 
+```
+projeto/
+├── node_modules/
+├── prisma/
+│   ├── migrations/
+│   ├── banco.db
+│   └── schema.prisma
+├── src/
+│   ├── controller/
+│   │   ├── book.js
+│   │   └── user.js
+│   ├── middlewares/
+│   │   ├── admin.js
+│   │   └── auth.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   └── book.js
+│   └── server.js
+├── .env
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
+```
+
 ## Dados iniciais
 ```sql
 INSERT INTO users (username, password, isAdmin) VALUES 

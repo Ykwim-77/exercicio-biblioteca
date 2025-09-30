@@ -5,8 +5,11 @@ API simples para gerenciar livros de uma biblioteca, com autenticação básica 
 
 
 📁 projeto/
+
 ├── 📁 node_modules/
+
 ├── 📁 prisma/
+
 │   ├── 📁 migrations/
 │   ├── 📄 banco.db
 │   └── 📄 schema.prisma

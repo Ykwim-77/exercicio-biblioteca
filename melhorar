@@ -1,0 +1,102 @@
+AVALIAÇÃO DO PROJETO - SISTEMA DE BIBLIOTECA
+
+CRITÉRIOS DE AVALIAÇÃO:
+- Funcionalidades Básicas (50 pontos)
+- Middlewares (30 pontos)  
+- Qualidade do Código (20 pontos)
+
+PROBLEMAS IDENTIFICADOS:
+
+1. SCHEMA DO BANCO DE DADOS:
+- Inconsistência de nomenclatura: tabela "book" deveria ser "books" (plural)                    desde quando tabela é no plural??
+
+- Campo isAdmin com valor padrão incorreto: está @default(true) quando deveria ser @default(false)
+- Campos title e author estão como opcionais (String?) quando deveriam ser obrigatórios (String)
+- Campo password está como opcional (String?) quando deveria ser obrigatório (String)
+
+2. MIDDLEWARE DE AUTENTICAÇÃO:
+- Erro crítico na comparação de senha: linha 21 usa "!usuarioAchado.password === senha" (comparação incorreta)
+- Middleware admin duplica autenticação em vez de apenas verificar se é admin
+
+3. ROTAS E MIDDLEWARES:
+- GET /books usa middlewares incorretos: verifyUser,verifyAdmin (deveria ser apenas verifyUser)
+- POST /books/:id/borrow usa middlewares incorretos: verifyUser, verifyAdmin (deveria ser apenas verifyUser)
+- POST /books/:id/return usa middlewares incorretos: verifyUser, verifyAdmin (deveria ser apenas verifyUser)
+
+4. CONTROLLERS:
+- Função "pegar" tem lógica incorreta: marca livro como indisponível e depois verifica se está indisponível
+- Validação de senha inconsistente: mensagem diz "6 caracteres" mas valida 4 caracteres
+- Response incorreto: algumas funções retornam status 204 com JSON body (deveria ser sem body)
+- Variável "ultimoId" declarada mas não utilizada
+- Falta validação se livro existe antes de operações de empréstimo/devolução
+- Tratamento de erro inadequado em algumas funções
+
+5. REGRAS DE NEGÓCIO:
+- Não implementa verificação se usuário pode pegar livro indisponível
+- Não implementa regra de primeiro usuário ser automaticamente admin
+- Lógica de empréstimo está invertida na função "pegar"
+
+6. ESTRUTURA E ORGANIZAÇÃO:
+- Código funcional mas com vários bugs que impedem funcionamento correto
+- Estrutura de pastas adequada
+- Rotas REST implementadas corretamente em termos de estrutura
+
+FUNCIONALIDADES TESTADAS (SIMULAÇÃO):
+
+POST /auth/register:
+- Funciona parcialmente (cria usuário mas com problemas no schema)
+- Validação de senha tem mensagem incorreta
+
+GET /books:
+- Não funcionará devido a middlewares incorretos
+- Usuário comum não conseguirá acessar
+
+POST /books:
+- Não funcionará devido a middleware admin duplicando autenticação
+
+POST /books/:id/borrow:
+- Não funcionará devido a middlewares incorretos
+- Lógica de empréstimo está invertida
+
+POST /books/:id/return:
+- Não funcionará devido a middlewares incorretos
+
+AVALIAÇÃO POR CRITÉRIOS:
+
+FUNCIONALIDADES BÁSICAS (50 pontos): 15/50
+- Autenticação Basic Token: Parcialmente implementada (erro na comparação de senha)
+- CRUD de livros para admin: Implementado mas com middlewares incorretos
+- Sistema de emprestar/devolver: Implementado mas com lógica incorreta
+- Diferenciação Admin/User: Implementada mas com middlewares incorretos
+
+MIDDLEWARES (30 pontos): 10/30
+- Middleware de autenticação: Implementado mas com erro crítico na comparação de senha
+
+!usuarioAchado.password é avaliado primeiro (negação)
+Se usuarioAchado.password for uma string não vazia, !usuarioAchado.password retorna false
+Então false === senha sempre será false (pois está comparando boolean com string)
+Como deveria ser:
+
+if(!usuarioAchado || usuarioAchado.password !== senha){
+
+
+- Middleware de autorização admin: Implementado mas duplica autenticação
+- Tratamento básico de erros: Implementado parcialmente
+
+QUALIDADE DO CÓDIGO (20 pontos): 12/20
+- Estrutura organizada: Sim, boa organização de pastas
+- Rotas REST corretas: Sim, estrutura correta
+- Código funcionando sem erros: Não, vários bugs críticos
+
+NOTA FINAL: 37/100
+
+JUSTIFICATIVA:
+O projeto demonstra conhecimento da estrutura básica de uma API REST com Express e Prisma, mas possui bugs críticos que impedem seu funcionamento correto. Os principais problemas são:
+
+1. Erro na comparação de senha no middleware de autenticação
+2. Middlewares aplicados incorretamente nas rotas
+3. Lógica de empréstimo invertida
+4. Inconsistências no schema do banco de dados
+5. Validações e mensagens de erro incorretas
+
+O código tem boa estrutura e organização, mas os bugs impedem que as funcionalidades básicas funcionem adequadamente. É necessário corrigir os problemas identificados para que o sistema funcione conforme especificado.

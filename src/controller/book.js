@@ -78,7 +78,7 @@ async function atualizarLivro(req,res){
     }catch(error){
       console.log(error);
     }
-  return res.status(204).json({mensagem: `Livro com id:${idnumber} foi atualizado`})
+  return res.status(200).json({mensagem: `Livro com id:${idnumber} foi atualizado`})
 }
 
 
@@ -96,7 +96,7 @@ async function deletarLivro(req,res){
   }catch(error){
     console.log(error)
   }
-  return res.status(204).json({mensagem: `Livro com id:${idnumber} foi deletado`})
+  return res.status(200).json({mensagem: `Livro com id:${idnumber} foi deletado`})
 
 }
 

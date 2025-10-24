@@ -1,35 +1,33 @@
+# Christian Da Rosa Martinkoski
+
+
 # API Sistema de Biblioteca
 
 ## Sobre
 API simples para gerenciar livros de uma biblioteca, com autenticação básica (Basic Token) e permissões de usuário e admin.
 
+# Como iniciar o projeto?
 
-📁 projeto/
+## 1️⃣ Criar pasta e entrar nela
+mkdir meu-projeto
+cd meu-projeto
 
-├── 📁 node_modules/
+## 2️⃣ Inicializar o projeto npm
+npm init -y
 
-├── 📁 prisma/
+## 3️⃣ Instalar Express
+npm install express
 
-│   ├── 📁 migrations/
-│   ├── 📄 banco.db
-│   └── 📄 schema.prisma
-├── 📁 src/
-│   ├── 📁 controller/
-│   │   ├── 📄 book.js
-│   │   └── 📄 user.js
-│   ├── 📁 middlewares/
-│   │   ├── 📄 admin.js
-│   │   └── 📄 auth.js
-│   ├── 📁 routes/
-│   │   ├── 📄 auth.js
-│   │   └── 📄 book.js
-│   └── 📄 server.js
-├── 📄 .env
-├── 📄 .gitignore
-├── 📄 package-lock.json
-├── 📄 package.json
-└── 📄 README.md
-Dicas rápidas
+## 4️⃣ Instalar Prisma e cliente
+npm install prisma --save-dev
+npm install @prisma/client
+
+## 5️⃣ Inicializar Prisma
+npx prisma init
+
+
+
+
 ## Banco de Dados
 
 **Users**
@@ -56,25 +54,28 @@ Dicas rápidas
 ## Rotas
 
 **Autenticação**
+
 POST /auth/register
+
 Body: { username, password }
 
-markdown
-Copiar código
-
 **Livros**
+
 GET /books
+
 GET /books/:id
+
 POST /books (admin)
+
 PATCH /books/:id (admin)
+
 DELETE /books/:id (admin)
+
 POST /books/:id/borrow
+
 POST /books/:id/return
 
-yaml
-Copiar código
 
----
 
 ## Middlewares
 - `auth`: verifica token e usuário  
@@ -88,6 +89,31 @@ Copiar código
 - Username único, senha mínima 4 caracteres  
 
 ---
+
+```
+projeto/
+├── node_modules/
+├── prisma/
+│   ├── migrations/
+│   ├── banco.db
+│   └── schema.prisma
+├── src/
+│   ├── controller/
+│   │   ├── book.js
+│   │   └── user.js
+│   ├── middlewares/
+│   │   ├── admin.js
+│   │   └── auth.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   └── book.js
+│   └── server.js
+├── .env
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
+```
 
 ## Dados iniciais
 ```sql
